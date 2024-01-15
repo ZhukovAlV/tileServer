@@ -15,14 +15,14 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @RestController
-public class TilesController {
+public class TileController {
 
-    private static final Logger logger = LoggerFactory.getLogger(TilesController.class);
+    private static final Logger logger = LoggerFactory.getLogger(TileController.class);
 
     @GetMapping(value = "/", produces = MediaType.IMAGE_PNG_VALUE)
     @ResponseBody
-    public byte[] getTile(@RequestParam String schema, int z, int x, int y) throws IOException {
-        String urlTile = "maps/" + schema + "/" + z + "/" + x + "/" + y +".png";
+    public byte[] getTile(@RequestParam String schema, int z, int x, int y, String extension) throws IOException {
+        String urlTile = "maps/" + schema + "/" + z + "/" + x + "/" + y + "." + extension;
         logger.info("Загружается тайл " + urlTile);
         File file = new File(urlTile);
         InputStream in = new FileInputStream(file);
